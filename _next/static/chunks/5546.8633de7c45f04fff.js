@@ -29,19 +29,7 @@
           show: { opacity: 1, transition: { duration: 0.2, ease: "easeIn" } },
         },
         /**Logo loading */
-        SplashScreen_LogoDipa = function () {
-          return (0, e.jsxs)(n.E.svg, {
-            width: "327",
-            height: "50",
-            viewBox: "0 0 327 50",
-            fill: "none",
-            xmlns: "http://www.w3.org/2000/svg",
-            variants: h,
-            initial: "hidden",
-            whileInView: "show",
-            viewport: { once: !0 },
-            children: [],
-          });
+        
         },
         o = {
           hidden: { y: 0 },
