@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WinWithSamsung Q&A and Testimonials</title>
+    <style>
+      /**
+         * Oscuro: #283035
+         * Azul: #03658c
+         * Detalle: #c7cacb
+         * Fondo: #dee1e3
+         ----------------------------------*/
+      * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      a {
+        color: #03658c;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style-type: none;
+      }
+
+      body {
+        font-family: "Roboto", Arial, Helvetica, Sans-serif, Verdana;
+        background: #dee1e3;
+      }
+
+      /** ====================
+         * Lista de Comentarios
+         =======================*/
+      .comments-container {
+        margin: 60px auto 15px;
+        width: 90%;
+        max-width: 768px;
+      }
+
+      .comments-container h1 {
+        font-size: 36px;
+        color: #283035;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .comments-container h1 a {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .comments-list {
+        margin-top: 30px;
+        position: relative;
+      }
+
+      /**
+         * Lineas / Detalles
+         -----------------------*/
+      .comments-list:before {
+        content: "";
+        width: 2px;
+        height: 100%;
+        background: #c7cacb;
+        position: absolute;
+        left: 32px;
+        top: 0;
+      }
+
+      .comments-list:after {
+        content: "";
+        position: absolute;
+        background: #c7cacb;
+        bottom: 0;
+        left: 27px;
+        width: 7px;
+        height: 7px;
+        border: 3px solid #dee1e3;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+
+      .reply-list:before,
+      .reply-list:after {
+        display: none;
+      }
+      .reply-list li:before {
+        content: "";
+        width: 60px;
+        height: 2px;
+        background: #c7cacb;
+        position: absolute;
+        top: 25px;
+        left: -55px;
+      }
+
+      .comments-list li {
+        margin-bottom: 15px;
+        display: block;
+        position: relative;
+      }
+
+      .comments-list li:after {
+        content: "";
+        display: block;
+        clear: both;
+        height: 0;
+        width: 0;
+      }
+
+      .reply-list {
+        padding-left: 88px;
+        clear: both;
+        margin-top: 15px;
+      }
+      /**
+         * Avatar
+         ---------------------------*/
+      .comments-list .comment-avatar {
+        width: 65px;
+        height: 65px;
+        position: relative;
+        z-index: 99;
+        float: left;
+        border: 3px solid #fff;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        margin-right: 15px;
+      }
+
+      .comments-list .comment-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%; /* Ensure circular shape */
+      }
+
+      .reply-list .comment-avatar {
+        width: 65px; /* Adjusted size for replies */
+        height: 65px;
+      }
+
+      .comment-main-level:after {
+        content: "";
+        width: 0;
+        height: 0;
+        display: block;
+        clear: both;
+      }
+      /**
+         * Caja del Comentario
+         ---------------------------*/
+      .comments-list .comment-box {
+        width: calc(100% - 80px);
+        float: right;
+        position: relative;
+        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+      }
+
+      .comments-list .comment-box:before,
+      .comments-list .comment-box:after {
+        content: "";
+        height: 0;
+        width: 0;
+        position: absolute;
+        display: block;
+        border-width: 10px 12px 10px 0;
+        border-style: solid;
+        border-color: transparent #fcfcfc;
+        top: 8px;
+        left: -11px;
+      }
+
+      .comments-list .comment-box:before {
+        border-width: 11px 13px 11px 0;
+        border-color: transparent rgba(0, 0, 0, 0.05);
+        left: -12px;
+      }
+
+      .reply-list .comment-box {
+        width: calc(100% - 100px);
+      }
+      .comment-box .comment-head {
+        background: #fcfcfc;
+        padding: 10px 12px;
+        border-bottom: 1px solid #e5e5e5;
+        overflow: hidden;
+        -webkit-border-radius: 4px 4px 0 0;
+        -moz-border-radius: 4px 4px 0 0;
+        border-radius: 4px 4px 0 0;
+      }
+
+      .comment-box .comment-head i {
+        float: right;
+        margin-left: 14px;
+        position: relative;
+        top: 2px;
+        color: #a6a6a6;
+        cursor: pointer;
+        -webkit-transition: color 0.3s ease;
+        -o-transition: color 0.3s ease;
+        transition: color 0.3s ease;
+      }
+
+      .comment-box .comment-head i:hover {
+        color: #03658c;
+      }
+
+      .comment-box .comment-name {
+        color: #283035;
+        font-size: 14px;
+        font-weight: 700;
+        float: left;
+        margin-right: 10px;
+      }
+
+      .comment-box .comment-name a {
+        color: #283035;
+      }
+
+      .comment-box .comment-head span {
+        float: left;
+        color: #999;
+        font-size: 13px;
+        position: relative;
+        top: 1px;
+      }
+
+      .comment-box .comment-content {
+        background: #fff;
+        padding: 12px;
+        font-size: 15px;
+        color: #595959;
+        -webkit-border-radius: 0 0 4px 4px;
+        -moz-border-radius: 0 0 4px 4px;
+        border-radius: 0 0 4px 4px;
+      }
+
+      .comment-box .comment-name.by-author,
+      .comment-box .comment-name.by-author a {
+        color: #03658c;
+      }
+      .comment-box .comment-name.by-author:after {
+        content: "author";
+        background: #03658c;
+        color: #fff;
+        font-size: 12px;
+        padding: 3px 5px;
+        font-weight: 700;
+        margin-left: 10px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+      }
+
+      /** =====================
+         * Responsive
+         ========================*/
+      @media only screen and (max-width: 766px) {
+        .comments-container {
+          width: 100%;
+          padding: 0 20px;
+        }
+
+        .comments-list .comment-box,
+        .reply-list .comment-box {
+          width: 100%;
+          float: none;
+        }
+
+        .reply-list {
+          padding-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="comments-container">
+      <h1>WinWithSamsung Q&A and Testimonials</h1>
+      <ul class="comments-list">
+        <!-- Comment 1 -->
+        <li>
+          <div class="comment-main-level">
+            <div class="comment-avatar">
+              <img
+                src="https://picsum.photos/id/1011/200/200"
+                alt="User Photo"
+              />
+            </div>
+            <div class="comment-box">
+              <div class="comment-head">
+                <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">John Smith</a></h6>
+                <span class="comment-time"></span>
+              </div>
+              <div class="comment-content">
+                This platform is amazing! I just won a new Samsung Galaxy!
+              </div>
+            </div>
+          </div>
+          <!-- Replies -->
+          <ul class="reply-list">
+            <li>
+              <div class="comment-avatar">
+                <img
+                  src="https://picsum.photos/id/1025/200/200"
+                  alt="User Photo"
+                />
+              </div>
+              <div class="comment-box">
+                <div class="comment-head">
+                  <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Emily Clark</a></h6>
+                  <span class="comment-time"></span>
+                </div>
+                <div class="comment-content">
+                  Congratulations! When is the next giveaway?
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="comment-avatar">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
+                  alt="Samsung Logo"
+                />
+              </div>
+              <div class="comment-box">
+                <div class="comment-head">
+                  <h6 class="comment-name by-author">
+                    <a href="https://www.WinWIthSamsung.org">WinWithSamsung</a>
+                  </h6>
+                  <span class="comment-time"></span>
+                </div>
+                <div class="comment-content">
+                  We have giveaways every month! Stay tuned to our website for
+                  updates.
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <!-- Comment 2 -->
+        <li>
+          <div class="comment-main-level">
+            <div class="comment-avatar">
+              <img
+                src="https://picsum.photos/id/103/200/200"
+                alt="User Photo"
+              />
+            </div>
+            <div class="comment-box">
+              <div class="comment-head">
+                <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">James Taylor</a></h6>
+                <span class="comment-time"></span>
+              </div>
+              <div class="comment-content">
+                How can I participate in the giveaway?
+              </div>
+            </div>
+          </div>
+          <!-- Replies -->
+          <ul class="reply-list">
+            <li>
+              <div class="comment-avatar">
+                <img
+                  src="https://picsum.photos/id/1043/200/200"
+                  alt="User Photo"
+                />
+              </div>
+              <div class="comment-box">
+                <div class="comment-head">
+                  <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Sarah Johnson</a></h6>
+                  <span class="comment-time"></span>
+                </div>
+                <div class="comment-content">
+                  Just visit their website and follow the instructions on the
+                  giveaway page to enter.
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="comment-avatar">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
+                  alt="Samsung Logo"
+                />
+              </div>
+              <div class="comment-box">
+                <div class="comment-head">
+                  <h6 class="comment-name by-author">
+                    <a href="https://www.WinWIthSamsung.org">WinWithSamsung</a>
+                  </h6>
+                  <span class="comment-time"></span>
+                </div>
+                <div class="comment-content">
+                  That's right! You can participate by following the steps on
+                  our giveaway page.
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <!-- Additional Comments -->
+        <!-- Comment 3 -->
+        <li>
+          <div class="comment-main-level">
+            <div class="comment-avatar">
+              <img
+                src="https://picsum.photos/id/1035/200/200"
+                alt="User Photo"
+              />
+            </div>
+            <div class="comment-box">
+              <div class="comment-head">
+                <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Michael Brown</a></h6>
+                <span class="comment-time"></span>
+              </div>
+              <div class="comment-content">
+                I love how WinWithSamsung makes giveaways so accessible to
+                everyone!
+              </div>
+            </div>
+          </div>
+          <!-- Replies -->
+          <ul class="reply-list">
+            <li>
+              <div class="comment-avatar">
+                <img
+                  src="https://picsum.photos/id/1037/200/200"
+                  alt="User Photo"
+                />
+              </div>
+              <div class="comment-box">
+                <div class="comment-head">
+                  <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Jessica Adams</a></h6>
+                  <span class="comment-time"></span>
+                </div>
+                <div class="comment-content">
+                  WinWithSamsung truly brings joy to many people!
+                </div>
+              </div>
+            </li>
+            <li>
+
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="https://picsum.photos/id/1013/200/200" alt="User Photo"></div>
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Shelly Huges</a></h6>
+                                        <span class="comment-time"></span>
+                                    </div>
+                                    <div class="comment-content">
+                                        I just won a new Samsung Galaxy!
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Replies -->
+                            <ul class="reply-list">
+                                <li>
+                                    <div class="comment-avatar"><img src="https://picsum.photos/id/1025/200/200" alt="User Photo"></div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Emily Clark</a></h6>
+                                            <span class="comment-time"></span>
+                                        </div>
+                                        <div class="comment-content">
+                                            Congratulations! When is the next giveaway?
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="comment-avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"></div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name by-author"><a href="https://www.WinWIthSamsung.org">WinWithSamsung</a></h6>
+                                            <span class="comment-time"></span>
+                                        </div>
+                                        <div class="comment-content">
+                                            We have giveaways every month! Stay tuned to our website for updates.
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Comment 2 -->
+                        <li>
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="https://picsum.photos/id/1013/200/200" alt="User Photo"></div>
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">James Matthews</a></h6>
+                                        <span class="comment-time"></span>
+                                    </div>
+                                    <div class="comment-content">
+                                        How can I participate in the giveaway?
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Replies -->
+                            <ul class="reply-list">
+                                <li>
+                                    <div class="comment-avatar"><img src="https://picsum.photos/id/1043/200/200" alt="User Photo"></div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Sophia Lee</a></h6>
+                                            <span class="comment-time"></span>
+                                        </div>
+                                        <div class="comment-content">
+                                            It's easy! Just visit our website and follow the instructions to enter.
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="comment-avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"></div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name by-author"><a href="https://www.WinWIthSamsung.org">WinWithSamsung</a></h6>
+                                            <span class="comment-time"></span>
+                                        </div>
+                                        <div class="comment-content">
+                                            We look forward to seeing your entry, James!
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Additional Comments -->
+                        <li>
+                            <!-- Comment 3 -->
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="https://picsum.photos/id/1062/200/200" alt="User Photo"></div>
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Sarah Johnson</a></h6>
+                                        <span class="comment-time"></span>
+                                    </div>
+                                    <div class="comment-content">
+                                        WinWithSamsung always has exciting prizes! I'm a loyal participant.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Replies -->
+                            <ul class="reply-list">
+                                <li>
+                                    <div class="comment-avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"></div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name by-author"><a href="https://www.WinWIthSamsung.org">WinWithSamsung</a></h6>
+                                            <span class="comment-time"></span>
+                                        </div>
+                                        <div class="comment-content">
+                                            We appreciate your support, Sarah!
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Additional Comments -->
+                        <li>
+                            <!-- Comment 4 -->
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="https://picsum.photos/id/1063/200/200" alt="User Photo"></div>
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Susan Roberts</a></h6>
+                                        <span class="comment-time"></span>
+                                    </div>
+                                    <div class="comment-content">
+                                        I've been participating in WinWithSamsung giveaways for months now. It's always exciting to see who wins next!
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Replies -->
+                            <ul class="reply-list">
+                                <li>
+                                    <div class="comment-avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"></div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name by-author"><a href="https://www.WinWIthSamsung.org">WinWithSamsung</a></h6>
+                                            <span class="comment-time"></span>
+                                        </div>
+                                        <div class="comment-content">
+                                            Thanks for your continued participation, Susan! We're glad you enjoy the excitement.
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Additional Comments -->
+                        <li>
+                            <!-- Comment 5 -->
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="https://picsum.photos/id/1074/200/200" alt="User Photo"></div>
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">David Miller</a></h6>
+                                        <span class="comment-time"></span>
+                                    </div>
+                                    <div class="comment-content">
+                                        WinWithSamsung has the best giveaways! I won a Samsung TV last month. Couldn't be happier!
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Replies -->
+                            <ul class="reply-list">
+                                <li>
+                                    <div class="comment-avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"></div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name by-author"><a href="https://www.WinWIthSamsung.org">WinWithSamsung</a></h6>
+                                            <span class="comment-time"></span>
+                                        </div>
+                                        <div class="comment-content">
+                                            Congratulations on your win, David! We hope you enjoy your new Samsung TV!
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Additional Comments -->
+                        <li>
+                            <!-- Comment 6 -->
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="https://picsum.photos/id/1084/200/200" alt="User Photo"></div>
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Olivia Green</a></h6>
+                                        <span class="comment-time"></span>
+                                    </div>
+                                    <div class="comment-content">
+                                        I love the variety of prizes WinWithSamsung offers. It's great to have a chance to win high-quality Samsung products!
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Replies -->
+                            <ul class="reply-list">
+                                <li>
+                                    <div class="comment-avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"></div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name by-author"><a href="https://www.WinWIthSamsung.org">WinWithSamsung</a></h6>
+                                            <span class="comment-time"></span>
+                                        </div>
+                                        <div class="comment-content">
+                                            Thank you for your feedback, Olivia! We strive to provide a range of prizes that everyone can enjoy.
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Additional Comments -->
+                        <li>
+                            <!-- Comment 7 -->
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="https://picsum.photos/id/109/200/200" alt="User Photo"></div>
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="https://www.WinWIthSamsung.org">Robert Wilson</a></h6>
+                                        <span class="comment-time"></span>
+                                    </div>
+                                    <div class="comment-content">
+                                        WinWithSamsung makes it easy to participate in giveaways. Their website is user-friendly, and the rules are clear.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Replies -->
+                            <ul class="reply-list">
+                                <li>
+                                    <div class="comment-avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"></div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name by-author"><a href="https://www.WinWIthSamsung.org">WinWithSamsung</a></h6>
+                                            <span class="comment-time"></span>
+                                        </div>
+                                        <div class="comment-content">
+                                            We appreciate your comment, Robert! Making our giveaways accessible and transparent is important to us.
+                                        </div>
+                                    </div>
+                                </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <script>
+      function updateCommentTimes() {
+        const commentTimes = document.querySelectorAll(".comment-time");
+        commentTimes.forEach((time) => {
+          const date = new Date();
+          time.textContent = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+        });
+      }
+
+      setInterval(updateCommentTimes, 1000);
+      updateCommentTimes();
+    </script>
+  </body>
+</html>

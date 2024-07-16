@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Past Winners Gallery</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 1rem 0;
+      }
+
+      h1,
+      h2 {
+        margin: 1rem 0;
+      }
+
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .gallery-item {
+        width: 300px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .gallery-item img,
+      .gallery-item video {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .gallery-item {
+          width: calc(50% - 10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Past Winners Gallery</h1>
+    </header>
+
+    <section id="videos">
+      <h2>Videos</h2>
+      <div class="gallery">
+        <!-- Video items -->
+        <div class="gallery-item">
+          <video
+            controls
+            src="video1.mp4"
+            class="img-fluid"
+            alt="Video"
+          ></video>
+        </div>
+        <div class="gallery-item">
+          <video
+            controls
+            src="video2.mp4"
+            class="img-fluid"
+            alt="Video"
+          ></video>
+        </div>
+        <div class="gallery-item">
+          <video
+            controls
+            src="video3.mp4"
+            class="img-fluid"
+            alt="Video"
+          ></video>
+        </div>
+        <!-- Add more video items as needed -->
+      </div>
+    </section>
+
+    <section id="pictures">
+      <h2>Pictures</h2>
+      <div class="gallery">
+        <!-- Image items -->
+        <div class="gallery-item">
+          <img src="image1.jpg" alt="Winner's photo" class="img-fluid" />
+        </div>
+        <div class="gallery-item">
+          <img src="image2.jpg" alt="Winner's photo" class="img-fluid" />
+        </div>
+        <div class="gallery-item">
+          <img src="image3.jpg" alt="Winner's photo" class="img-fluid" />
+        </div>
+        <!-- Add more image items as needed -->
+      </div>
+    </section>
+  </body>
+</html>
